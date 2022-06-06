@@ -9,15 +9,15 @@ namespace MoodAnalyser
     public class AnalyzeMood
     {
 
-       private string message;
-        public AnalyzeMood(string message)
+       private string mood;
+        public AnalyzeMood(string mood)
         {
-            this.message = message;
+            this.mood = mood;
         }
 
         public string getMood()
         {
-            if (this.message.Contains("Sad"))
+            if (this.mood.Contains("Sad"))
             {
 
                 return "Sad";
