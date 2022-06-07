@@ -29,5 +29,20 @@ namespace MoodanalyserTest
             string acualResult = mood.getMood();
             Assert.AreEqual("Happy", acualResult);
         }
+        [Test]
+        public void GivenEmpty_AnalyseMood_ReturnHappyMood()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyser.AnalyzeMood mood = new MoodAnalyser.AnalyzeMood(message);
+                string acualResult = mood.getMood();
+            }
+            catch (MoodAnalyser.AnalyzerException exc)
+            {
+                Assert.AreEqual("Mood can not be Empty", exc.Message);
+            }
+        }
+
     }
 }
