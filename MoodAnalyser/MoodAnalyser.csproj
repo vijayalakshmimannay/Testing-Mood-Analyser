@@ -7,12 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="MoodAnalyzecs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="MoodAnalyzecs" />
-  </ItemGroup>
-
 </Project>
