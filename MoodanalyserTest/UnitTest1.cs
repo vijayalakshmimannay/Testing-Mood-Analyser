@@ -112,5 +112,21 @@ namespace MoodanalyserTest
             }
 
         }
+
+        [Test]
+        public void GivenInvalidPerameterizedConstructor_ReturnClassNotFound()
+        {
+            try
+            {
+                object expected = new MoodAnalyze("Happy");
+                object actual = MoodAnalyser.MoodAnalyseFactory.createMoodAnalyzerParameter("MoodAnalyser", "MoodAnalyse", "Happy");
+                expected.Equals(actual);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Class not found", e.Message);
+            }
+
+        }
     }
 }
