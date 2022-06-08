@@ -96,5 +96,21 @@ namespace MoodanalyserTest
             object value = MoodAnalyseFactory.createMoodAnalyzerParameter("MoodAnalyser.MoodAnalyze", "MoodAnalyze", "Happy");
             expected.Equals(value);
         }
+
+        [Test]
+        public void GivenInvalidClassNameAndValidPerameterizedConstructor_ReturnNoSuchConstructor()
+        {
+            try
+            {
+                object expected = new MoodAnalyze("Happy");
+                object actual = MoodAnalyser.MoodAnalyseFactory.createMoodAnalyzerParameter("MoodAnalyze", "MoodAna", "Happy");
+                expected.Equals(actual);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Constructor is Not Found", e.Message);
+            }
+
+        }
     }
 }
