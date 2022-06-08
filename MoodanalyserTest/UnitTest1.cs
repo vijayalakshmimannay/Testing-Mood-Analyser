@@ -47,21 +47,37 @@ namespace MoodanalyserTest
             }
         }
         [Test]
-        public void GivenMoodAnalyserClassName_ShouldReturnMoodAnalyseObjectd()
+        public void GivenMoodAnalyserClassName_ReturnMoodAnalyseObject()
         {
             object expected = new MoodAnalyze();
             object obj = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyze", "MoodAnalyze");
             expected.Equals(obj);
         }
 
-        [Test]
-        public void GivenMoodAnalyserClassName_ShouldreturnObject()
-        {
-            string message = null;
-            object expected = new MoodAnalyze(message);
-            object actual = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyze", "MoodAnalyze");
-            expected.Equals(actual);
+        //[Test]
+        //public void GivenMoodAnalyserClassName_ShouldreturnObject()
+        //{
+           // string message = null;
+           // object expected = new MoodAnalyze(message);
+           // object actual = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyze", "MoodAnalyze");
+           // expected.Equals(actual);
 
+       // }
+
+        [Test]
+        public void GivenMoodAnalyseClassName_ShouldreturnClassNotFound()
+        {
+            try
+            {
+                string message = null;
+                object expected = new MoodAnalyze(message);
+                object actual = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyser.MoodAna", "MoodAnalyser.MoodAnalyze");
+                expected.Equals(actual);
+            }
+            catch (MoodAnalyser.AnalyzerException ex)
+            {
+                Assert.AreEqual("Class not found", ex.Message);
+            }
         }
     }
 }
