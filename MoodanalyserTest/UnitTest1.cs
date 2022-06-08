@@ -1,14 +1,17 @@
+using MoodAnalyser;
+
 namespace MoodanalyserTest
 {
     public class Tests
     {
         private string message;
+        private object obj;
 
         [Test]
         public void GivenMood_AnalyseMood_ReturnsadMood()
         {
             string message = "I am in Sad Mood";
-            MoodAnalyser.AnalyzeMood mood = new MoodAnalyser.AnalyzeMood(message);
+            MoodAnalyser.MoodAnalyze mood = new MoodAnalyser.MoodAnalyze(message);
             string acualResult = mood.getMood();
             Assert.AreEqual("Sad", acualResult);
         }
@@ -16,7 +19,7 @@ namespace MoodanalyserTest
         public void GivenMood_AnalyseMood_ReturnHappyMood()
         {
             string message = "I am in Happy Mood";
-            MoodAnalyser.AnalyzeMood mood = new MoodAnalyser.AnalyzeMood(message);
+            MoodAnalyser.MoodAnalyze mood = new MoodAnalyser.MoodAnalyze(message);
             string acualResult = mood.getMood();
             Assert.AreEqual("Happy", acualResult);
 
@@ -25,7 +28,7 @@ namespace MoodanalyserTest
         public void GivenNull_AnalyseMood_ReturnHappyMood()
         {
             string message = "null";
-            MoodAnalyser.AnalyzeMood mood = new MoodAnalyser.AnalyzeMood(message);
+            MoodAnalyser.MoodAnalyze mood = new MoodAnalyser.MoodAnalyze(message);
             string acualResult = mood.getMood();
             Assert.AreEqual("Happy", acualResult);
         }
@@ -35,7 +38,7 @@ namespace MoodanalyserTest
             try
             {
                 string message = "";
-                MoodAnalyser.AnalyzeMood mood = new MoodAnalyser.AnalyzeMood(message);
+                MoodAnalyser.MoodAnalyze mood = new MoodAnalyser.MoodAnalyze(message);
                 string acualResult = mood.getMood();
             }
             catch (MoodAnalyser.AnalyzerException exc)
@@ -43,13 +46,13 @@ namespace MoodanalyserTest
                 Assert.AreEqual("Mood can not be Empty", exc.Message);
             }
         }
-        //[Test]
-        //public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
-        //    object expected = new MoodAnalyse();
-          //  object obj = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyserApp.MoodAnalyse", "MoodAnalyse");
-          //  expected.Equals(obj);
-       // }
-
+        [Test]
+        public void GivenMoodAnalyserClassName_ShouldReturnMoodAnalyseObjectd()
+        {
+            object expected = new MoodAnalyze();
+            object obj = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyze", "MoodAnalyze");
+            expected.Equals(obj);
+        }
 
     }
 }
