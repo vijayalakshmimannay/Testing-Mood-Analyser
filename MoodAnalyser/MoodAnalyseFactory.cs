@@ -39,7 +39,7 @@ namespace MoodAnalyser
         }
         public static object createMoodAnalyzerParameter(string ClassName, string ConstructorName, string message)
         {
-            Type type = typeof(MoodAnalyze);
+            Type type = typeof(MoodAnalyser);
             if (type.Name.Equals(ClassName) || type.FullName.Equals(ClassName))
             {
                 if (type.Name.Equals(ConstructorName))
@@ -50,12 +50,12 @@ namespace MoodAnalyser
                 }
                 else
                 {
-                    throw new AnalyzerException(AnalyzerException.ExceptionType.NO_SUCH_METHOD, "Constructor is Not Found");
+                    throw new AnalyzerException(AnalyzerException.ExceptionType.NO_SUCH_CLASS, "Class not found");
                 }
             }
             else
             {
-                throw new AnalyzerException(AnalyzerException.ExceptionType.NO_SUCH_CLASS, "Class not found");
+                throw new AnalyzerException(AnalyzerException.ExceptionType.NO_SUCH_METHOD, "Constructor is Not Found");
             }
 
         }
@@ -74,6 +74,25 @@ namespace MoodAnalyser
                 throw new AnalyzerException(AnalyzerException.ExceptionType.NO_SUCH_METHOD, "Method is Not Found");
             }
 
+        }
+        public static object SetField(string moods, string fieldName)
+        {
+            try
+            {
+                MoodAnalyser moodAnalyser = new MoodAnalyser();
+                Type type = typeof(MoodAnalyser);
+                FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                if (moods == null)
+                {
+                    throw new AnalyzerException(AnalyzerException.ExceptionType.NULL_MESSAGE, "Mood Should not be null");
+                }
+                field.SetValue(moodAnalyser, moods);
+                return moodAnalyser.mood;
+            }
+            catch 
+            {
+                throw new AnalyzerException(AnalyzerException.ExceptionType.NO_SUCH_FIELD, "Field Not Found");
+            }
         }
 
     }
