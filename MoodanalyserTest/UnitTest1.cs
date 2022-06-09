@@ -155,5 +155,18 @@ namespace MoodanalyserTest
                 Assert.AreEqual("Field Not Found", ex.Message);
             }
         }
+        [Test]
+        public void GivenNullMood_AnalyseProcess_ReturnNullException()
+        {
+            try
+            {
+                object result = MoodAnalyser.MoodAnalyseFactory.SetField("Happy", "mood");
+                Assert.AreEqual("Happy", result);
+            }
+            catch (Exception exp)
+            {
+                Assert.AreEqual("Mood Should not be null", exp.Message);
+            }
+        }
     }
 }
