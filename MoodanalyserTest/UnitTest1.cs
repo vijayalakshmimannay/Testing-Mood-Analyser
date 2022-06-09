@@ -142,5 +142,18 @@ namespace MoodanalyserTest
             object result = MoodAnalyser.MoodAnalyseFactory.SetField("Happy", "mood");
             Assert.AreEqual("Happy", result);
         }
+        [Test]
+        public void GivenMoodAnalyseClassName_ShouldreturnClassNotFound_Refactor()
+        {
+            try
+            {
+                object result = MoodAnalyser.MoodAnalyseFactory.SetField("Happy", "mood");
+                Assert.AreEqual("Happy", result);
+            }
+            catch (MoodAnalyser.AnalyzerException ex)
+            {
+                Assert.AreEqual("Field Not Found", ex.Message);
+            }
+        }
     }
 }
