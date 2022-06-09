@@ -114,6 +114,14 @@ namespace MoodanalyserTest
         }
 
         [Test]
+        public void GivenHappyIsInput_ShouldReturnHappy_UsinReflection()
+        {
+            object expected = "Happy";
+            object actual = MoodAnalyser.MoodAnalyseFactory.InvokeMoodAnalyser("Happy", "getMood");
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void GivenInvalidPerameterizedConstructor_ReturnClassNotFound()
         {
             try
@@ -128,5 +136,6 @@ namespace MoodanalyserTest
             }
 
         }
+
     }
 }
